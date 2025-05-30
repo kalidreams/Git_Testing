@@ -1,0 +1,40 @@
+<header class="header">
+  <div class="header-container">
+    <div class="logo">
+      <a href="/">
+        <h1>Logo</h1>
+      </a>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav" [class.hidden]="isMobileMenuOpen">
+      <ul class="nav-list">
+        @for (item of navItems; track item.label) {
+          <li class="nav-item">
+            <a [href]="item.link" class="nav-link">{{ item.label }}</a>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" (click)="toggleMobileMenu()" aria-label="Toggle menu">
+      <span class="hamburger" [class.active]="isMobileMenuOpen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" [class.active]="isMobileMenuOpen">
+      <ul class="mobile-nav-list">
+        @for (item of navItems; track item.label) {
+          <li class="mobile-nav-item">
+            <a [href]="item.link" class="mobile-nav-link">{{ item.label }}</a>
+          </li>
+        }
+      </ul>
+    </nav>
+  </div>
+</header> 
