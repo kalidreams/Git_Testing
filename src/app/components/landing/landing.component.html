@@ -1,0 +1,145 @@
+<main class="landing-page">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <h1>{{ heroHeading }}<br>{{ heroSubheading }}</h1>
+      <div class="cta-buttons">
+        <button class="primary-btn">Get Started</button>
+        <button class="secondary-btn">Learn More</button>
+      </div>
+      <div class="hero-image">
+        <!-- Placeholder for hero image -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Logos Section -->
+  <section class="trust-logos">
+    <div class="container">
+      <div class="logo-grid">
+        <img *ngFor="let logo of integrationLogos" [src]="logo.image" [alt]="logo.name">
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="container">
+      <h2>Features Section</h2>
+      <div class="features-grid">
+        <div class="feature-card" *ngFor="let feature of features">
+          <h3>{{ feature.title }}</h3>
+          <p>{{ feature.description }}</p>
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-item" *ngFor="let i of [1,2,3,4]">
+          <span class="stat-number">55%</span>
+          <span class="stat-label">Stat</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works">
+    <div class="container">
+      <h2>How It Works Section</h2>
+      <div class="steps-container">
+        <div class="step-card" *ngFor="let step of steps">
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="why-choose-us">
+    <div class="container">
+      <h2>Why Choose Us Section</h2>
+      <div class="reasons-grid">
+        <div class="reason-card" *ngFor="let reason of whyChooseUs">
+          <div class="icon">?</div>
+          <h3>{{ reason.title }}</h3>
+          <p>{{ reason.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Integrations Section -->
+  <section class="integrations">
+    <div class="container">
+      <h2>Integrations Section</h2>
+      <div class="integration-logos">
+        <img *ngFor="let logo of integrationLogos" [src]="logo.image" [alt]="logo.name">
+      </div>
+    </div>
+  </section>
+
+  <!-- Review Section -->
+  <section class="reviews">
+    <div class="container">
+      <h2>Review Section</h2>
+      <div class="review-grid">
+        <div class="review-card" *ngFor="let review of reviews">
+          <div class="rating">
+            <span *ngFor="let star of [1,2,3,4,5]">★</span>
+          </div>
+          <p>{{ review.text }}</p>
+          <h4>{{ review.name }}</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing">
+    <div class="container">
+      <h2>Pricing Section</h2>
+      <div class="pricing-grid">
+        <div class="pricing-card" *ngFor="let plan of pricingPlans" [class.highlighted]="plan.highlighted">
+          <h3>{{ plan.name }}</h3>
+          <div class="price">
+            <span class="currency">$</span>
+            <span class="amount">{{ plan.price }}</span>
+            <span class="period" *ngIf="plan.period">{{ plan.period }}</span>
+          </div>
+          <ul class="features-list">
+            <li *ngFor="let feature of plan.features">{{ feature }}</li>
+          </ul>
+          <button [class.primary-btn]="plan.highlighted" [class.secondary-btn]="!plan.highlighted">
+            {{ plan.buttonText }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq">
+    <div class="container">
+      <h2>FAQ Section</h2>
+      <div class="faq-list">
+        <div class="faq-item" *ngFor="let item of faqItems">
+          <button class="faq-question">
+            {{ item.question }}
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>{{ item.answer }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="final-cta">
+    <div class="container">
+      <h2>CTA Heading</h2>
+      <button class="primary-btn">Get Started</button>
+    </div>
+  </section>
+</main> 
