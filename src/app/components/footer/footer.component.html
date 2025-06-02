@@ -1,12 +1,12 @@
-<footer class="footer">
-  <div class="footer-container">
+<footer class="footer"> 
+    <div class="footer-container"> 
     <div class="footer-content">
       <div class="footer-section">
         <div class="company-info">
           <h3>Your Company</h3>
           <p>Building amazing experiences</p>
         </div>
-      </div>
+      </div> 
 
       <div class="footer-section">
         <nav class="footer-nav">
@@ -18,9 +18,9 @@
             }
           </ul>
         </nav>
-      </div>
+      </div> 
 
-      <div class="footer-section">
+       <div class="footer-section">
         <div class="social-links">
           @for (social of socialLinks; track social.icon) {
             <a [href]="social.link" target="_blank" rel="noopener" class="social-link">
@@ -45,10 +45,11 @@
           }
         </div>
       </div>
-    </div>
+     </div>
 
-    <div class="footer-bottom">
+    <div style="padding-top: 2rem;" class="footer-bottom">
       <p>&copy; {{ currentYear }} Your Company. All rights reserved.</p>
-    </div>
+    
+  </div>
   </div>
 </footer> 

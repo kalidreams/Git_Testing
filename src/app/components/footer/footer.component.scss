@@ -6,49 +6,35 @@ $background-color: #fffcf8;
 $transition-speed: 0.3s;
 $mobile-breakpoint: 768px;
 
-.footer {
-  background-color: $background-color;
+footer {
+  background: $background-color;
+  padding: 4rem 0 2rem;
+  color: $text-color;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 3rem 0 1.5rem;
-  margin-top: 2rem;
 
-  .footer-container {
+  .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 2rem;
   }
 
   .footer-content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-bottom: 2rem;
-
-    @media (max-width: $mobile-breakpoint) {
-      grid-template-columns: 1fr;
-      text-align: center;
-    }
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+    padding: 0 2rem;
+    text-align: center;
   }
 
   .footer-section {
-    .company-info {
-      h3 {
-        color: $text-color;
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin: 0 0 0.5rem;
-      }
-
-      p {
-        color: lighten($text-color, 20%);
-        font-size: 1rem;
-        margin: 0;
-      }
+    h3 {
+      color: $text-color;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
     }
-  }
 
-  .footer-nav {
-    .footer-links {
+    ul {
       list-style: none;
       padding: 0;
       margin: 0;
@@ -56,57 +42,24 @@ $mobile-breakpoint: 768px;
       li {
         margin-bottom: 0.75rem;
 
-        &:last-child {
-          margin-bottom: 0;
+        a {
+          color: lighten($text-color, 20%);
+          text-decoration: none;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: $hover-color;
+          }
         }
-      }
-
-      .footer-link {
-        color: $text-color;
-        text-decoration: none;
-        font-weight: 500;
-        transition: color $transition-speed ease;
-
-        &:hover {
-          color: $hover-color;
-        }
-      }
-    }
-  }
-
-  .social-links {
-    display: flex;
-    gap: 1rem;
-    justify-content: flex-start;
-
-    @media (max-width: $mobile-breakpoint) {
-      justify-content: center;
-    }
-
-    .social-link {
-      color: $text-color;
-      transition: color $transition-speed ease;
-
-      &:hover {
-        color: $hover-color;
-      }
-
-      svg {
-        width: 24px;
-        height: 24px;
       }
     }
   }
 
   .footer-bottom {
-    text-align: center;
-    padding-top: 1.5rem;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
-
-    p {
-      color: lighten($text-color, 30%);
-      font-size: 0.875rem;
-      margin: 0;
-    }
+    padding-top: 2rem;
+    text-align: center;
+    color: lighten($text-color, 30%);
+    margin-top: 2rem;
   }
 } 

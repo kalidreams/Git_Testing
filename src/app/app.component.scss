@@ -27,25 +27,28 @@
   --pill-accent: var(--bright-blue);
 
   display: block;
+  width: 100%;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 main {
-  padding-top: 4rem; // Space for fixed header
-  min-height: calc(100vh - 4rem); // Adjust for header height
+  margin: 0;
+  padding: 0;
   width: 100%;
+  min-height: calc(100vh - 8rem);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 4rem 1rem 1rem; // Top padding accounts for header
-  box-sizing: inherit;
   position: relative;
+  overflow-x: hidden;
 }
 
 h1 {

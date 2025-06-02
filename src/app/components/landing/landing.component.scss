@@ -1,8 +1,9 @@
 // Variables
-$primary-color: #2563eb;
-$secondary-color: #1e40af;
-$text-color: #1f2937;
-$light-bg: #f8fafc;
+$primary-color: #c53030;  // Rust red from container
+$secondary-color: #8b2c2c;  // Darker rust
+$text-color: #1f2937;  // Dark gray for text
+$light-bg: #f8f8f8;  // Light gray background
+$dark-grey-bg: #2d3748;  // Darker background for contrast sections
 $border-color: #e2e8f0;
 $container-width: 1200px;
 $border-radius: 8px;
@@ -14,16 +15,22 @@ $border-radius: 8px;
   padding: 0 1.5rem;
 }
 
-@mixin card {
+@mixin card-padding {
+  padding: 2rem;
+  text-align: center;
+}
+
+@mixin card-base {
   background: white;
   border: 1px solid $border-color;
   border-radius: $border-radius;
-  padding: 1.5rem;
   transition: all 0.3s ease;
+  @include card-padding;
 
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-color: $primary-color;
   }
 }
 
@@ -31,9 +38,77 @@ $border-radius: 8px;
 .landing-page {
   color: $text-color;
   line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
 
   section {
     padding: 4rem 0;
+    width: 100%;
+
+    &.hero-section {
+      padding: 0;
+      margin: 0;
+      position: relative;
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+
+      .container {
+        padding: 0;
+        max-width: none;
+        margin: 0;
+        width: 100%;
+      }
+
+      .hero-image {
+        position: relative;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.3);
+          z-index: 1;
+        }
+        
+        .hero-img {
+          width: 100%;
+          height: 800px;
+          object-fit: cover;
+          display: block;
+          margin: 0;
+          padding: 0;
+        }
+
+        .hero-logo {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 2;
+
+          .overlay-logo {
+            max-width: 300px;
+            height: auto;
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
+          }
+        }
+      }
+    }
+
+    &.features-section {
+      padding-top: 1.85rem;
+    }
 
     h2 {
       text-align: center;
@@ -56,15 +131,16 @@ $border-radius: 8px;
   border: none;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 
   &:hover {
-    background: $secondary-color;
+    background: darken($primary-color, 10%);
+    transform: translateY(-2px);
   }
 }
 
 .secondary-btn {
-  background: white;
+  background: transparent;
   color: $primary-color;
   padding: 0.75rem 1.5rem;
   border-radius: $border-radius;
@@ -76,17 +152,85 @@ $border-radius: 8px;
   &:hover {
     background: $primary-color;
     color: white;
+    transform: translateY(-2px);
   }
 }
 
 // Hero Section
 .hero-section {
-  text-align: center;
-  padding: 6rem 0;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  margin-top: 0;
+
+  .container {
+    padding: 0;
+    max-width: none;
+    margin: 0;
+  }
+
+  .hero-image {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+    
+    .hero-img {
+      width: 100%;
+      height: 800px;
+      object-fit: cover;
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+
+    .hero-logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+
+      .overlay-logo {
+        max-width: 300px;
+        height: auto;
+        filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
+      }
+    }
+  }
+
+  // Add a dark overlay to ensure white text is readable
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, 
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0.2) 50%,
+      rgba(0, 0, 0, 0) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
 
   h1 {
     font-size: 3.5rem;
-    margin-bottom: 2rem;
+    margin: 0 0 2rem 0;
+    position: relative;
+    z-index: 2;
   }
 
   .cta-buttons {
@@ -95,33 +239,33 @@ $border-radius: 8px;
     justify-content: center;
     margin-bottom: 3rem;
   }
-
-  .hero-image {
-    max-width: 800px;
-    margin: 0 auto;
-    background: $light-bg;
-    height: 400px;
-    border-radius: $border-radius;
-  }
 }
 
 // Trust Logos
 .trust-logos {
-  background: $light-bg;
+  background: white;
+  padding: 5rem 0;
+  margin: 4rem 0;
 
   .logo-grid {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    gap: 3rem;
+    gap: 5rem;
     flex-wrap: wrap;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
 
     img {
-      height: 40px;
-      opacity: 0.7;
-      transition: opacity 0.3s ease;
+      height: 3rem;
+      width: auto;
+      object-fit: contain;
+      opacity: 0.9;
+      transition: all 0.3s ease;
 
       &:hover {
+        transform: translateY(-2px);
         opacity: 1;
       }
     }
@@ -130,6 +274,9 @@ $border-radius: 8px;
 
 // Features Section
 .features-section {
+  background: $light-bg;
+  margin: 0;
+  
   .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -138,7 +285,17 @@ $border-radius: 8px;
   }
 
   .feature-card {
-    @include card;
+    @include card-base;
+    
+    h3 {
+      margin-bottom: 1rem;
+      color: $text-color;
+    }
+
+    p {
+      color: lighten($text-color, 20%);
+      line-height: 1.6;
+    }
   }
 
   .stats-row {
@@ -158,7 +315,8 @@ $border-radius: 8px;
 
 // How It Works
 .how-it-works {
-  background: $light-bg;
+  background: $dark-grey-bg;
+  color: white;
 
   .steps-container {
     display: grid;
@@ -167,12 +325,30 @@ $border-radius: 8px;
   }
 
   .step-card {
-    @include card;
+    @include card-base;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+
+    h3 {
+      margin-bottom: 1rem;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
   }
 }
 
 // Why Choose Us
 .why-choose-us {
+  background: $light-bg;
+
   .reasons-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -180,26 +356,38 @@ $border-radius: 8px;
   }
 
   .reason-card {
-    @include card;
-    text-align: center;
-
+    @include card-base;
+    
     .icon {
       width: 50px;
       height: 50px;
-      background: $light-bg;
+      background: $primary-color;
+      color: white;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 1rem;
+      margin: 0 auto 1.5rem;
       font-size: 1.5rem;
+    }
+
+    h3 {
+      margin-bottom: 1rem;
+      color: $text-color;
+    }
+
+    p {
+      color: lighten($text-color, 20%);
+      line-height: 1.6;
     }
   }
 }
 
 // Reviews Section
 .reviews {
-  background: $light-bg;
+  margin-top: 4rem;
+  background: $dark-grey-bg;
+  color: white;
 
   .review-grid {
     display: grid;
@@ -208,17 +396,32 @@ $border-radius: 8px;
   }
 
   .review-card {
-    @include card;
+    @include card-base;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
 
     .rating {
       color: #fbbf24;
       margin-bottom: 1rem;
+    }
+
+    p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    h4 {
+      color: rgba(255, 255, 255, 0.9);
     }
   }
 }
 
 // Pricing Section
 .pricing {
+  background: $light-bg;
+
   .pricing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -226,15 +429,15 @@ $border-radius: 8px;
   }
 
   .pricing-card {
-    @include card;
-    text-align: center;
+    @include card-base;
 
     &.highlighted {
       border-color: $primary-color;
-      transform: scale(1.05);
+      background: linear-gradient(to bottom right, white, rgba($primary-color, 0.05));
     }
 
     .price {
+      color: $primary-color;
       font-size: 3rem;
       margin: 1.5rem 0;
 
@@ -245,7 +448,7 @@ $border-radius: 8px;
 
       .period {
         font-size: 1rem;
-        color: #64748b;
+        color: lighten($text-color, 30%);
       }
     }
 
@@ -255,8 +458,9 @@ $border-radius: 8px;
       margin: 2rem 0;
 
       li {
-        padding: 0.5rem 0;
+        padding: 0.75rem 0;
         border-bottom: 1px solid $border-color;
+        color: lighten($text-color, 20%);
 
         &:last-child {
           border-bottom: none;
@@ -280,32 +484,34 @@ $border-radius: 8px;
   .faq-question {
     width: 100%;
     text-align: left;
-    padding: 1rem;
+    padding: 1.5rem;
     background: white;
     border: 1px solid $border-color;
     border-radius: $border-radius;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
+    transition: all 0.3s ease;
 
-    .icon {
-      font-size: 1.5rem;
+    &:hover {
+      border-color: $primary-color;
     }
   }
 
   .faq-answer {
-    padding: 1rem;
+    padding: 1.5rem;
     background: $light-bg;
     border-radius: 0 0 $border-radius $border-radius;
     margin-top: -1px;
+
+    p {
+      line-height: 1.6;
+      color: lighten($text-color, 20%);
+    }
   }
 }
 
 // Final CTA
 .final-cta {
   text-align: center;
-  background: $light-bg;
+  background: $dark-grey-bg;
   padding: 6rem 0;
 
   h2 {
@@ -313,8 +519,58 @@ $border-radius: 8px;
   }
 }
 
+// Section Divider
+.section-divider {
+  max-width: calc(1200px - 240px);
+  margin: 4rem auto;
+  border: none;
+  border-top: 1px solid rgba($primary-color, 0.2);
+  opacity: 0.5;
+}
+
+// Integrations Section
+.integrations {
+  padding: 4rem 0;
+  
+  .integration-logos {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 5rem;
+    flex-wrap: wrap;
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+
+    img {
+      height: 2.5rem;
+      width: auto;
+      object-fit: contain;
+      opacity: 0.9;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        opacity: 1;
+      }
+    }
+  }
+}
+
 // Responsive Design
+@media (max-width: 1200px) {
+  .trust-logos .logo-grid,
+  .integrations .integration-logos {
+    gap: 4rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .trust-logos .logo-grid,
+  .integrations .integration-logos {
+    gap: 3rem;
+  }
+
   .landing-page {
     section {
       padding: 3rem 0;
