@@ -6,6 +6,8 @@ $background-color: #fffcf8;
 $transition-speed: 0.3s;
 $mobile-breakpoint: 768px;
 
+@use "sass:color";
+
 footer {
   background: $background-color;
   padding: 4rem 0 2rem;
@@ -43,7 +45,7 @@ footer {
         margin-bottom: 0.75rem;
 
         a {
-          color: lighten($text-color, 20%);
+          color: color.adjust($text-color, $lightness: 20%);
           text-decoration: none;
           transition: color 0.3s ease;
 
@@ -59,7 +61,7 @@ footer {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     padding-top: 2rem;
     text-align: center;
-    color: lighten($text-color, 30%);
+    color: color.adjust($text-color, $lightness: 30%);
     margin-top: 2rem;
   }
 } 
